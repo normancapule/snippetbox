@@ -1,0 +1,22 @@
+version: "3.8"
+
+services:
+  web:
+    build: .
+    volumes:
+      - .:/app
+    depends_on:
+      - pg
+    stdin_open: true
+    tty: true
+
+  pg:
+    image: postgres:latest
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=postgres
+
+volumes:
+  pgdata:
+
